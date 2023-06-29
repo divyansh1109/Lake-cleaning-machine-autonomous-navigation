@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<robot name="lcm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find lcm_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find lcm_description)/urdf/lcm.trans" />
+<xacro:include filename="$(find lcm_description)/urdf/lcm.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="1.386213583910284e-05 5.694968099553096e-17 0.09849166735566821" rpy="0 0 0"/>
+    <mass value="18.213631742017775"/>
+    <inertia ixx="0.150556" iyy="0.399796" izz="0.51678" ixy="0.0" iyz="0.0" ixz="1.7e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://lcm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://lcm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="1.6542923143205804e-17 -0.034999999999999976 1.3877787807814457e-17" rpy="0 0 0"/>
+    <mass value="2.0451768174869542"/>
+    <inertia ixx="0.005948" iyy="0.010226" izz="0.005948" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 0.15 -0.1" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://lcm_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 0.15 -0.1" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://lcm_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="1.6542923143205804e-17 0.035 1.3877787807814457e-17" rpy="0 0 0"/>
+    <mass value="2.0451768174869542"/>
+    <inertia ixx="0.005948" iyy="0.010226" izz="0.005948" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.15 -0.1" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://lcm_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.15 -0.1" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://lcm_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute 1" type="continuous">
+  <origin xyz="0.0 -0.15 0.1" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Revolute 2" type="continuous">
+  <origin xyz="0.0 0.15 0.1" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+</robot>

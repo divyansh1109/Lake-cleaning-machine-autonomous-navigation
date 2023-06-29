@@ -1,0 +1,14 @@
+<launch>
+  <!-- Start RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find lcm_description)/rviz_config.rviz" />
+
+  <!-- Wait for RViz to start -->
+  <node name="rviz_wait" pkg="rospy" type="rosrun" args="rospy" respawn="false" output="screen" required="true">
+    <param name="cmd" value="sleep 5" />
+  </node>
+
+  <!-- Subscribe RViz to the path topic -->
+  <node name="path_subscriber" pkg="rviz" type="rviz" args="topic -t nav_msgs/Path -n /path" />
+
+</launch>
+
